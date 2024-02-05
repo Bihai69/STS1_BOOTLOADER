@@ -1,5 +1,5 @@
 BOOTLOADER_SIZE = 0x8000
-BOOTLOADER_FILE = "/home/user_mb/Projects_NEW/STS1_DEV_BOOTLOADER/build/STS1_DEV_BOOTLOADER.bin"
+BOOTLOADER_FILE = "STS1_DEV_BOOTLOADER/build/STS1_DEV_BOOTLOADER.bin"
 
 with open(BOOTLOADER_FILE, "rb") as f:
     raw_file = f.read()
