@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccUvfusC.s 			page 1
+ARM GAS  /tmp/ccOi7f3b.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
   28:Core/Src/stm32f4xx_hal_msp.c **** /* Private typedef -----------------------------------------------------------*/
   29:Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   30:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  /tmp/ccUvfusC.s 			page 2
+ARM GAS  /tmp/ccOi7f3b.s 			page 2
 
 
   31:Core/Src/stm32f4xx_hal_msp.c **** /* USER CODE END TD */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
   43 0006 0B4B     		ldr	r3, .L3
   44 0008 5A6C     		ldr	r2, [r3, #68]
   45 000a 42F48042 		orr	r2, r2, #16384
-ARM GAS  /tmp/ccUvfusC.s 			page 3
+ARM GAS  /tmp/ccOi7f3b.s 			page 3
 
 
   46 000e 5A64     		str	r2, [r3, #68]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
   94              	.LFB135:
   79:Core/Src/stm32f4xx_hal_msp.c **** 
   80:Core/Src/stm32f4xx_hal_msp.c **** /**
-ARM GAS  /tmp/ccUvfusC.s 			page 4
+ARM GAS  /tmp/ccOi7f3b.s 			page 4
 
 
   81:Core/Src/stm32f4xx_hal_msp.c **** * @brief CRC MSP Initialization
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
   98:Core/Src/stm32f4xx_hal_msp.c ****   }
   99:Core/Src/stm32f4xx_hal_msp.c **** 
  100:Core/Src/stm32f4xx_hal_msp.c **** }
-ARM GAS  /tmp/ccUvfusC.s 			page 5
+ARM GAS  /tmp/ccOi7f3b.s 			page 5
 
 
  131              		.loc 1 100 1 is_stmt 0 view .LVU25
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  119:Core/Src/stm32f4xx_hal_msp.c ****   /* USER CODE END CRC_MspDeInit 1 */
  120:Core/Src/stm32f4xx_hal_msp.c ****   }
  121:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  /tmp/ccUvfusC.s 			page 6
+ARM GAS  /tmp/ccOi7f3b.s 			page 6
 
 
  122:Core/Src/stm32f4xx_hal_msp.c **** }
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  213 0006 0393     		str	r3, [sp, #12]
  214 0008 0493     		str	r3, [sp, #16]
  215 000a 0593     		str	r3, [sp, #20]
-ARM GAS  /tmp/ccUvfusC.s 			page 7
+ARM GAS  /tmp/ccOi7f3b.s 			page 7
 
 
  216 000c 0693     		str	r3, [sp, #24]
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  241 001e 0021     		movs	r1, #0
  242 0020 0191     		str	r1, [sp, #4]
  139:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  /tmp/ccUvfusC.s 			page 8
+ARM GAS  /tmp/ccOi7f3b.s 			page 8
 
 
  243              		.loc 1 139 5 view .LVU43
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  150:Core/Src/stm32f4xx_hal_msp.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
  282              		.loc 1 150 27 is_stmt 0 view .LVU59
  283 0056 0323     		movs	r3, #3
-ARM GAS  /tmp/ccUvfusC.s 			page 9
+ARM GAS  /tmp/ccOi7f3b.s 			page 9
 
 
  284 0058 0693     		str	r3, [sp, #24]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  169:Core/Src/stm32f4xx_hal_msp.c ****   if(hspi->Instance==SPI3)
  327              		.loc 1 169 3 is_stmt 1 view .LVU67
  328              		.loc 1 169 10 is_stmt 0 view .LVU68
-ARM GAS  /tmp/ccUvfusC.s 			page 10
+ARM GAS  /tmp/ccOi7f3b.s 			page 10
 
 
  329 0002 0268     		ldr	r2, [r0]
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  360              		.cfi_endproc
  361              	.LFE138:
  363              		.section	.text.HAL_UART_MspInit,"ax",%progbits
-ARM GAS  /tmp/ccUvfusC.s 			page 11
+ARM GAS  /tmp/ccOi7f3b.s 			page 11
 
 
  364              		.align	1
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  205:Core/Src/stm32f4xx_hal_msp.c ****     /* Peripheral clock enable */
  206:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_USART1_CLK_ENABLE();
  207:Core/Src/stm32f4xx_hal_msp.c **** 
-ARM GAS  /tmp/ccUvfusC.s 			page 12
+ARM GAS  /tmp/ccOi7f3b.s 			page 12
 
 
  208:Core/Src/stm32f4xx_hal_msp.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  433              		.loc 1 208 5 view .LVU89
  434              	.LBB8:
  208:Core/Src/stm32f4xx_hal_msp.c ****     /**USART1 GPIO Configuration
-ARM GAS  /tmp/ccUvfusC.s 			page 13
+ARM GAS  /tmp/ccOi7f3b.s 			page 13
 
 
  435              		.loc 1 208 5 view .LVU90
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  474 006c D7E7     		b	.L31
  475              	.L36:
  476 006e 00BF     		.align	2
-ARM GAS  /tmp/ccUvfusC.s 			page 14
+ARM GAS  /tmp/ccOi7f3b.s 			page 14
 
 
  477              	.L35:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  247:Core/Src/stm32f4xx_hal_msp.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9|GPIO_PIN_10);
  248:Core/Src/stm32f4xx_hal_msp.c **** 
  249:Core/Src/stm32f4xx_hal_msp.c ****   /* USER CODE BEGIN USART1_MspDeInit 1 */
-ARM GAS  /tmp/ccUvfusC.s 			page 15
+ARM GAS  /tmp/ccOi7f3b.s 			page 15
 
 
  250:Core/Src/stm32f4xx_hal_msp.c **** 
@@ -885,32 +885,32 @@ ARM GAS  /tmp/ccUvfusC.s 			page 1
  546              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_crc.h"
  547              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
  548              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
-ARM GAS  /tmp/ccUvfusC.s 			page 16
+ARM GAS  /tmp/ccOi7f3b.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_hal_msp.c
-     /tmp/ccUvfusC.s:18     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/ccUvfusC.s:80     .text.HAL_MspInit:0000000000000034 $d
-     /tmp/ccUvfusC.s:85     .text.HAL_CRC_MspInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:92     .text.HAL_CRC_MspInit:0000000000000000 HAL_CRC_MspInit
-     /tmp/ccUvfusC.s:140    .text.HAL_CRC_MspInit:0000000000000028 $d
-     /tmp/ccUvfusC.s:146    .text.HAL_CRC_MspDeInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:153    .text.HAL_CRC_MspDeInit:0000000000000000 HAL_CRC_MspDeInit
-     /tmp/ccUvfusC.s:182    .text.HAL_CRC_MspDeInit:0000000000000018 $d
-     /tmp/ccUvfusC.s:188    .text.HAL_SPI_MspInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:195    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-     /tmp/ccUvfusC.s:301    .text.HAL_SPI_MspInit:0000000000000068 $d
-     /tmp/ccUvfusC.s:307    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:314    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-     /tmp/ccUvfusC.s:357    .text.HAL_SPI_MspDeInit:0000000000000024 $d
-     /tmp/ccUvfusC.s:364    .text.HAL_UART_MspInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:371    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
-     /tmp/ccUvfusC.s:478    .text.HAL_UART_MspInit:0000000000000070 $d
-     /tmp/ccUvfusC.s:483    .text.HAL_UART_MspDeInit:0000000000000000 $t
-     /tmp/ccUvfusC.s:490    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
-     /tmp/ccUvfusC.s:533    .text.HAL_UART_MspDeInit:0000000000000024 $d
+     /tmp/ccOi7f3b.s:18     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccOi7f3b.s:80     .text.HAL_MspInit:0000000000000034 $d
+     /tmp/ccOi7f3b.s:85     .text.HAL_CRC_MspInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:92     .text.HAL_CRC_MspInit:0000000000000000 HAL_CRC_MspInit
+     /tmp/ccOi7f3b.s:140    .text.HAL_CRC_MspInit:0000000000000028 $d
+     /tmp/ccOi7f3b.s:146    .text.HAL_CRC_MspDeInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:153    .text.HAL_CRC_MspDeInit:0000000000000000 HAL_CRC_MspDeInit
+     /tmp/ccOi7f3b.s:182    .text.HAL_CRC_MspDeInit:0000000000000018 $d
+     /tmp/ccOi7f3b.s:188    .text.HAL_SPI_MspInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:195    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+     /tmp/ccOi7f3b.s:301    .text.HAL_SPI_MspInit:0000000000000068 $d
+     /tmp/ccOi7f3b.s:307    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:314    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+     /tmp/ccOi7f3b.s:357    .text.HAL_SPI_MspDeInit:0000000000000024 $d
+     /tmp/ccOi7f3b.s:364    .text.HAL_UART_MspInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:371    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
+     /tmp/ccOi7f3b.s:478    .text.HAL_UART_MspInit:0000000000000070 $d
+     /tmp/ccOi7f3b.s:483    .text.HAL_UART_MspDeInit:0000000000000000 $t
+     /tmp/ccOi7f3b.s:490    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
+     /tmp/ccOi7f3b.s:533    .text.HAL_UART_MspDeInit:0000000000000024 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_Init

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccb1b3G5.s 			page 1
+ARM GAS  /tmp/ccRkAw2O.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
   29:Core/Src/main.c **** 
   30:Core/Src/main.c **** /* USER CODE END PTD */
   31:Core/Src/main.c **** 
-ARM GAS  /tmp/ccb1b3G5.s 			page 2
+ARM GAS  /tmp/ccRkAw2O.s 			page 2
 
 
   32:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
   86:Core/Src/main.c ****   /* USER CODE BEGIN Init */
   87:Core/Src/main.c **** 
   88:Core/Src/main.c ****   /* USER CODE END Init */
-ARM GAS  /tmp/ccb1b3G5.s 			page 3
+ARM GAS  /tmp/ccRkAw2O.s 			page 3
 
 
   89:Core/Src/main.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
   40              		.loc 1 130 3 view .LVU3
   41              		.loc 1 130 40 is_stmt 0 view .LVU4
   42 0002 024B     		ldr	r3, .L3
-ARM GAS  /tmp/ccb1b3G5.s 			page 4
+ARM GAS  /tmp/ccRkAw2O.s 			page 4
 
 
   43 0004 5B68     		ldr	r3, [r3, #4]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  163:Core/Src/main.c ****   {
  164:Core/Src/main.c ****     Error_Handler();
  165:Core/Src/main.c ****   }
-ARM GAS  /tmp/ccb1b3G5.s 			page 5
+ARM GAS  /tmp/ccRkAw2O.s 			page 5
 
 
  166:Core/Src/main.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  220:Core/Src/main.c ****   /* USER CODE BEGIN SPI3_Init 1 */
  221:Core/Src/main.c **** 
  222:Core/Src/main.c ****   /* USER CODE END SPI3_Init 1 */
-ARM GAS  /tmp/ccb1b3G5.s 			page 6
+ARM GAS  /tmp/ccRkAw2O.s 			page 6
 
 
  223:Core/Src/main.c ****   /* SPI3 parameter configuration*/
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  277:Core/Src/main.c **** }
  278:Core/Src/main.c **** 
  279:Core/Src/main.c **** /**
-ARM GAS  /tmp/ccb1b3G5.s 			page 7
+ARM GAS  /tmp/ccRkAw2O.s 			page 7
 
 
  280:Core/Src/main.c ****   * @brief GPIO Initialization Function
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  108              	.LBB5:
  109              		.loc 1 292 3 view .LVU18
  110 0026 0194     		str	r4, [sp, #4]
-ARM GAS  /tmp/ccb1b3G5.s 			page 8
+ARM GAS  /tmp/ccRkAw2O.s 			page 8
 
 
  111              		.loc 1 292 3 view .LVU19
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  155 0066 2023     		movs	r3, #32
  156 0068 0393     		str	r3, [sp, #12]
  303:Core/Src/main.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-ARM GAS  /tmp/ccb1b3G5.s 			page 9
+ARM GAS  /tmp/ccRkAw2O.s 			page 9
 
 
  157              		.loc 1 303 3 is_stmt 1 view .LVU33
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  197              		.align	2
  198              	.L7:
  199 0090 00380240 		.word	1073887232
-ARM GAS  /tmp/ccb1b3G5.s 			page 10
+ARM GAS  /tmp/ccRkAw2O.s 			page 10
 
 
  200 0094 00000240 		.word	1073872896
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
   18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
   19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
   20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-ARM GAS  /tmp/ccb1b3G5.s 			page 11
+ARM GAS  /tmp/ccRkAw2O.s 			page 11
 
 
   21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
   75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
   77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/ccb1b3G5.s 			page 12
+ARM GAS  /tmp/ccRkAw2O.s 			page 12
 
 
   78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  132:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  133:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern void _start(void) __NO_RETURN;
  134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  /tmp/ccb1b3G5.s 			page 13
+ARM GAS  /tmp/ccRkAw2O.s 			page 13
 
 
  135:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  189:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  190:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __TZ_STACK_SEAL_SIZE
  191:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __TZ_STACK_SEAL_SIZE      8U
-ARM GAS  /tmp/ccb1b3G5.s 			page 14
+ARM GAS  /tmp/ccRkAw2O.s 			page 14
 
 
  192:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  246:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Send Event
  247:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Send Event is a hint instruction. It causes an event to be signaled to the CPU.
  248:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccb1b3G5.s 			page 15
+ARM GAS  /tmp/ccRkAw2O.s 			page 15
 
 
  249:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SEV()                             __ASM volatile ("sev")
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  303:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  304:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  305:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  /tmp/ccb1b3G5.s 			page 16
+ARM GAS  /tmp/ccRkAw2O.s 			page 16
 
 
  306:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (16 bit)
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  360:Drivers/CMSIS/Include/cmsis_gcc.h ****            Debug tools can use this to investigate system state when the instruction at a particula
  361:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  is ignored by the processor.
  362:Drivers/CMSIS/Include/cmsis_gcc.h ****                  If required, a debugger can use it to store additional information about the break
-ARM GAS  /tmp/ccb1b3G5.s 			page 17
+ARM GAS  /tmp/ccRkAw2O.s 			page 17
 
 
  363:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  417:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
  418:Drivers/CMSIS/Include/cmsis_gcc.h ****   return __builtin_clz(value);
  419:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccb1b3G5.s 			page 18
+ARM GAS  /tmp/ccRkAw2O.s 			page 18
 
 
  420:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  474:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint32_t at (*ptr)
  475:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  476:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __LDREXW(volatile uint32_t *addr)
-ARM GAS  /tmp/ccb1b3G5.s 			page 19
+ARM GAS  /tmp/ccRkAw2O.s 			page 19
 
 
  477:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  531:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("strex %0, %2, %1" : "=&r" (result), "=Q" (*addr) : "r" (value) );
  532:Drivers/CMSIS/Include/cmsis_gcc.h ****    return(result);
  533:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccb1b3G5.s 			page 20
+ARM GAS  /tmp/ccRkAw2O.s 			page 20
 
 
  534:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  588:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Moves each bit of a bitstring right by one bit.
  589:Drivers/CMSIS/Include/cmsis_gcc.h ****            The carry input is shifted in at the left end of the bitstring.
  590:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to rotate
-ARM GAS  /tmp/ccb1b3G5.s 			page 21
+ARM GAS  /tmp/ccRkAw2O.s 			page 21
 
 
  591:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Rotated value
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  645:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  646:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  647:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDRT Unprivileged (32 bit)
-ARM GAS  /tmp/ccb1b3G5.s 			page 22
+ARM GAS  /tmp/ccRkAw2O.s 			page 22
 
 
  648:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Executes a Unprivileged LDRT instruction for 32 bit values.
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  702:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Saturates a signed value.
  703:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to be saturated
  704:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    sat  Bit position to saturate to (1..32)
-ARM GAS  /tmp/ccb1b3G5.s 			page 23
+ARM GAS  /tmp/ccRkAw2O.s 			page 23
 
 
  705:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             Saturated value
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  759:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
  760:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return             value of type uint8_t at (*ptr)
  761:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccb1b3G5.s 			page 24
+ARM GAS  /tmp/ccRkAw2O.s 			page 24
 
 
  762:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint8_t __LDAB(volatile uint8_t *ptr)
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  816:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]  value  Value to store
  817:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to location
  818:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccb1b3G5.s 			page 25
+ARM GAS  /tmp/ccRkAw2O.s 			page 25
 
 
  819:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STLH(uint16_t value, volatile uint16_t *ptr)
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  873:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __LDAEX(volatile uint32_t *ptr)
  874:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  875:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
-ARM GAS  /tmp/ccb1b3G5.s 			page 26
+ARM GAS  /tmp/ccRkAw2O.s 			page 26
 
 
  876:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  930:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  931:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  932:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif /* ((defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)) || \
-ARM GAS  /tmp/ccb1b3G5.s 			page 27
+ARM GAS  /tmp/ccRkAw2O.s 			page 27
 
 
  933:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    ) */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  246              		.syntax unified
  247              		.thumb
  248              		.thumb_func
-ARM GAS  /tmp/ccb1b3G5.s 			page 28
+ARM GAS  /tmp/ccRkAw2O.s 			page 28
 
 
  249              		.fpu fpv4-sp-d16
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  297              		.cfi_startproc
  298              		@ args = 0, pretend = 0, frame = 0
  299              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccb1b3G5.s 			page 29
+ARM GAS  /tmp/ccRkAw2O.s 			page 29
 
 
  300 0000 08B5     		push	{r3, lr}
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  336 0020 0362     		str	r3, [r0, #32]
  233:Core/Src/main.c ****   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
  337              		.loc 1 233 3 is_stmt 1 view .LVU84
-ARM GAS  /tmp/ccb1b3G5.s 			page 30
+ARM GAS  /tmp/ccRkAw2O.s 			page 30
 
 
  233:Core/Src/main.c ****   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  383              		.cfi_offset 3, -8
  384              		.cfi_offset 14, -4
  261:Core/Src/main.c ****   huart1.Init.BaudRate = 115200;
-ARM GAS  /tmp/ccb1b3G5.s 			page 31
+ARM GAS  /tmp/ccRkAw2O.s 			page 31
 
 
  385              		.loc 1 261 3 view .LVU96
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  420              		.loc 1 277 1 view .LVU115
  421 0024 08BD     		pop	{r3, pc}
  422              	.L26:
-ARM GAS  /tmp/ccb1b3G5.s 			page 32
+ARM GAS  /tmp/ccRkAw2O.s 			page 32
 
 
  271:Core/Src/main.c ****   }
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  147:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
  472              		.loc 1 147 3 view .LVU123
  473 001a 0193     		str	r3, [sp, #4]
-ARM GAS  /tmp/ccb1b3G5.s 			page 33
+ARM GAS  /tmp/ccRkAw2O.s 			page 33
 
 
  147:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  155:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
  513              		.loc 1 155 41 is_stmt 0 view .LVU139
  514 004e 1021     		movs	r1, #16
-ARM GAS  /tmp/ccb1b3G5.s 			page 34
+ARM GAS  /tmp/ccRkAw2O.s 			page 34
 
 
  515 0050 0C91     		str	r1, [sp, #48]
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  550 0070 0493     		str	r3, [sp, #16]
  172:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
  551              		.loc 1 172 3 is_stmt 1 view .LVU159
-ARM GAS  /tmp/ccb1b3G5.s 			page 35
+ARM GAS  /tmp/ccRkAw2O.s 			page 35
 
 
  172:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  596              		.align	1
  597              		.global	main
  598              		.syntax unified
-ARM GAS  /tmp/ccb1b3G5.s 			page 36
+ARM GAS  /tmp/ccRkAw2O.s 			page 36
 
 
  599              		.thumb
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  644              		.loc 1 106 3 view .LVU180
  645 002e 0022     		movs	r2, #0
  646 0030 2021     		movs	r1, #32
-ARM GAS  /tmp/ccb1b3G5.s 			page 37
+ARM GAS  /tmp/ccRkAw2O.s 			page 37
 
 
  647 0032 2046     		mov	r0, r4
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  695      00000000 
  696              		.section	.bss.hspi3,"aw",%nobits
  697              		.align	2
-ARM GAS  /tmp/ccb1b3G5.s 			page 38
+ARM GAS  /tmp/ccRkAw2O.s 			page 38
 
 
  698              		.set	.LANCHOR1,. + 0
@@ -2255,42 +2255,42 @@ ARM GAS  /tmp/ccb1b3G5.s 			page 1
  727              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
  728              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  729              		.file 14 "<built-in>"
-ARM GAS  /tmp/ccb1b3G5.s 			page 39
+ARM GAS  /tmp/ccRkAw2O.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccb1b3G5.s:18     .text.jump_to_app:0000000000000000 $t
-     /tmp/ccb1b3G5.s:25     .text.jump_to_app:0000000000000000 jump_to_app
-     /tmp/ccb1b3G5.s:54     .text.jump_to_app:000000000000000c $d
-     /tmp/ccb1b3G5.s:59     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccb1b3G5.s:65     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccb1b3G5.s:199    .text.MX_GPIO_Init:0000000000000090 $d
-     /tmp/ccb1b3G5.s:206    .text.Error_Handler:0000000000000000 $t
-     /tmp/ccb1b3G5.s:213    .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/ccb1b3G5.s:245    .text.MX_CRC_Init:0000000000000000 $t
-     /tmp/ccb1b3G5.s:251    .text.MX_CRC_Init:0000000000000000 MX_CRC_Init
-     /tmp/ccb1b3G5.s:282    .text.MX_CRC_Init:0000000000000014 $d
-     /tmp/ccb1b3G5.s:288    .text.MX_SPI3_Init:0000000000000000 $t
-     /tmp/ccb1b3G5.s:294    .text.MX_SPI3_Init:0000000000000000 MX_SPI3_Init
-     /tmp/ccb1b3G5.s:362    .text.MX_SPI3_Init:0000000000000038 $d
-     /tmp/ccb1b3G5.s:368    .text.MX_USART1_UART_Init:0000000000000000 $t
-     /tmp/ccb1b3G5.s:374    .text.MX_USART1_UART_Init:0000000000000000 MX_USART1_UART_Init
-     /tmp/ccb1b3G5.s:429    .text.MX_USART1_UART_Init:000000000000002c $d
-     /tmp/ccb1b3G5.s:435    .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccb1b3G5.s:442    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccb1b3G5.s:590    .text.SystemClock_Config:0000000000000098 $d
-     /tmp/ccb1b3G5.s:596    .text.main:0000000000000000 $t
-     /tmp/ccb1b3G5.s:603    .text.main:0000000000000000 main
-     /tmp/ccb1b3G5.s:681    .text.main:0000000000000060 $d
-     /tmp/ccb1b3G5.s:708    .bss.huart1:0000000000000000 huart1
-     /tmp/ccb1b3G5.s:701    .bss.hspi3:0000000000000000 hspi3
-     /tmp/ccb1b3G5.s:694    .bss.hcrc:0000000000000000 hcrc
-     /tmp/ccb1b3G5.s:714    .rodata.BL_VERSION:0000000000000000 BL_VERSION
-     /tmp/ccb1b3G5.s:690    .bss.hcrc:0000000000000000 $d
-     /tmp/ccb1b3G5.s:697    .bss.hspi3:0000000000000000 $d
-     /tmp/ccb1b3G5.s:704    .bss.huart1:0000000000000000 $d
-     /tmp/ccb1b3G5.s:711    .rodata.BL_VERSION:0000000000000000 $d
+     /tmp/ccRkAw2O.s:18     .text.jump_to_app:0000000000000000 $t
+     /tmp/ccRkAw2O.s:25     .text.jump_to_app:0000000000000000 jump_to_app
+     /tmp/ccRkAw2O.s:54     .text.jump_to_app:000000000000000c $d
+     /tmp/ccRkAw2O.s:59     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccRkAw2O.s:65     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccRkAw2O.s:199    .text.MX_GPIO_Init:0000000000000090 $d
+     /tmp/ccRkAw2O.s:206    .text.Error_Handler:0000000000000000 $t
+     /tmp/ccRkAw2O.s:213    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccRkAw2O.s:245    .text.MX_CRC_Init:0000000000000000 $t
+     /tmp/ccRkAw2O.s:251    .text.MX_CRC_Init:0000000000000000 MX_CRC_Init
+     /tmp/ccRkAw2O.s:282    .text.MX_CRC_Init:0000000000000014 $d
+     /tmp/ccRkAw2O.s:288    .text.MX_SPI3_Init:0000000000000000 $t
+     /tmp/ccRkAw2O.s:294    .text.MX_SPI3_Init:0000000000000000 MX_SPI3_Init
+     /tmp/ccRkAw2O.s:362    .text.MX_SPI3_Init:0000000000000038 $d
+     /tmp/ccRkAw2O.s:368    .text.MX_USART1_UART_Init:0000000000000000 $t
+     /tmp/ccRkAw2O.s:374    .text.MX_USART1_UART_Init:0000000000000000 MX_USART1_UART_Init
+     /tmp/ccRkAw2O.s:429    .text.MX_USART1_UART_Init:000000000000002c $d
+     /tmp/ccRkAw2O.s:435    .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccRkAw2O.s:442    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccRkAw2O.s:590    .text.SystemClock_Config:0000000000000098 $d
+     /tmp/ccRkAw2O.s:596    .text.main:0000000000000000 $t
+     /tmp/ccRkAw2O.s:603    .text.main:0000000000000000 main
+     /tmp/ccRkAw2O.s:681    .text.main:0000000000000060 $d
+     /tmp/ccRkAw2O.s:708    .bss.huart1:0000000000000000 huart1
+     /tmp/ccRkAw2O.s:701    .bss.hspi3:0000000000000000 hspi3
+     /tmp/ccRkAw2O.s:694    .bss.hcrc:0000000000000000 hcrc
+     /tmp/ccRkAw2O.s:714    .rodata.BL_VERSION:0000000000000000 BL_VERSION
+     /tmp/ccRkAw2O.s:690    .bss.hcrc:0000000000000000 $d
+     /tmp/ccRkAw2O.s:697    .bss.hspi3:0000000000000000 $d
+     /tmp/ccRkAw2O.s:704    .bss.huart1:0000000000000000 $d
+     /tmp/ccRkAw2O.s:711    .rodata.BL_VERSION:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
