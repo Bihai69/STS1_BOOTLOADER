@@ -49,6 +49,8 @@ SPI_HandleTypeDef hspi3;
 
 UART_HandleTypeDef huart1;
 
+FLASH_EraseInitTypeDef FlashErase;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -61,6 +63,7 @@ static void MX_SPI3_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 static void jump_to_app(void);
+static uint32_t flash_write(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -109,6 +112,7 @@ int main(void)
   HAL_Delay(100); //DELAY
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
 
+  uint32_t page_error = flash_write();
 
   jump_to_app();
   /* USER CODE END 2 */
@@ -122,6 +126,31 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+static uint32_t flash_write(void){
+
+  uint32_t FlashMemAddress = 0x08060000;
+  uint32_t SectorError = 0;
+  uint32_t test_word = 0xDEADBEEF;
+
+  HAL_FLASH_Unlock(); //unlock the flash
+  FlashErase.Sector = FLASH_SECTOR_7;
+  FlashErase.NbSectors = 1;
+  FlashErase.TypeErase = FLASH_TYPEERASE_SECTORS;
+  FlashErase.VoltageRange = VOLTAGE_RANGE_3;
+
+  HAL_FLASHEx_Erase(&FlashErase, &SectorError);
+
+  //Start writing from the 1st address
+  for(int i = 0; i < 32768; i++) //32768 = 128k/4 (4 bytes pro wort)
+  {
+      HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,FlashMemAddress, test_word);
+      FlashMemAddress += 4; // word (4 bytes) increment
+  }
+
+  HAL_FLASH_Lock(); //lock the flash
+  return SectorError;
 }
 
 static void jump_to_app(void){
