@@ -111,17 +111,16 @@ int main(void)
   HAL_Delay(2500); //DELAY
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
 
-  //flash_write_dummy(); //write test data to sector 6 for debugging
+  flash_write_dummy(); //write test data to sector 6 for debugging
 
   flash_erase_app_sector(); //erase the backup sector
 
   flash_write_copy(); //write a copy from backup sector to app sector
 
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
-  HAL_Delay(2500); //DELAY
-  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
 
-  jump_to_app(); //jumpt ot application sector
+
+  //jump_to_app(); //jumpt ot application sector
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -143,18 +142,20 @@ int main(void)
 
 static void flash_write_copy(void)
 {
-  volatile uint32_t appstart_flash_memory_address = 0x08008000; //start adress fpr programm sector of flash
-  volatile uint32_t * backup_flash_memory_address = 0x08040000; //start adress fpr programm sector of flash (1-)
-  uint32_t current_read_word = 0; //current read word from backup sector
+  volatile uint32_t app_flash_memory_address = 0x08020000; //start adress fpr programm sector of flash
+  volatile uint32_t * backup_flash_memory_address = 0x08040000; //start adress fpr backup programm sector of flash
+  uint32_t current_read_word = 0xCAFEBABE; //current read word from backup sector
   uint32_t counter = 0;
 
   HAL_FLASH_Unlock(); //unlock the flash
-  for(int i = 0; i < 32768; i++) //32768 = 128k/4 (4 bytes pro wort)
+  for(uint32_t iterator = 0; iterator < 0x8000; iterator++) //4 bytes pro wort werden gelesen 0x4000 = 0x10000 im flash (128K/4=32K=0x8000)
   {
-    current_read_word = *(backup_flash_memory_address+counter);
-    HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,(appstart_flash_memory_address+counter),current_read_word); //Write Word at address
-    counter += 4;
+    //current_read_word = *(backup_flash_memory_address);
+    HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,app_flash_memory_address,current_read_word); //Write Word at address
+    app_flash_memory_address += 4;
+    backup_flash_memory_address += 4;
   }
+
   HAL_FLASH_Lock(); //lock the flash
 
 }
@@ -164,8 +165,8 @@ static uint32_t flash_erase_app_sector(void){
   uint32_t sector_error = 0;
   uint8_t status = 0;
 
-  FlashErase.Sector = FLASH_SECTOR_2; //specifiy exact sector to earase
-  FlashErase.NbSectors = 4; // specifiy number of following sectors to be erased
+  FlashErase.Sector = FLASH_SECTOR_5; //specifiy exact sector to earase
+  FlashErase.NbSectors = 1; // specifiy number of following+initial sectors to be erased
   FlashErase.TypeErase = FLASH_TYPEERASE_SECTORS; //specify operation type
   FlashErase.VoltageRange = VOLTAGE_RANGE_3; //specify parallelism of erase
 
@@ -185,7 +186,7 @@ static uint32_t flash_write_dummy(void){
 
   HAL_FLASH_Unlock(); //unlock the flash
   //Start writing from the 1st address
-  for(int i = 0; i < 32768; i++) //32768 = 128k/4 (4 bytes pro wort)
+  for(int iterator = 0; iterator < 0x8000; iterator++) //32768 = 128k/4 (4 bytes pro wort)
   {
       HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,FlashMemAddress, test_word);
       FlashMemAddress += 4; // word (4 bytes) increment
@@ -198,7 +199,7 @@ static uint32_t flash_write_dummy(void){
 
 static void jump_to_app(void){
   typedef void (*void_fn)(void);
-  uint32_t* reset_vector_entry = (uint32_t *)(0x8008000U+4U); //get adress of reset handler of main app and store it as pointer
+  uint32_t* reset_vector_entry = (uint32_t *)(0x8020000U+4U); //get adress of reset handler of main app and store it as pointer
   uint32_t* reset_vector = (uint32_t*)(*reset_vector_entry);  //get content of pouinter (should be antoher pointer)
   void_fn jump_fn = (void_fn)reset_vector;                    //convert pointer to function pointer
 
