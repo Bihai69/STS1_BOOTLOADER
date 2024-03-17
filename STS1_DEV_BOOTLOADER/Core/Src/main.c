@@ -58,12 +58,15 @@ FLASH_EraseInitTypeDef FlashErase;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_CRC_Init(void);
+//static void MX_CRC_Init(void);
 static void MX_SPI3_Init(void);
-static void MX_USART1_UART_Init(void);
+//static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 static void jump_to_app(void);
-static uint32_t flash_write(void);
+static void flash_write_copy(void);
+static uint32_t flash_erase_app_sector(void); //standard backup sector is 6
+
+static uint32_t flash_write_dummy(void); //testing
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -107,14 +110,18 @@ int main(void)
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
   HAL_Delay(2500); //DELAY
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
-  HAL_Delay(2500); //DELAY
+
+  //flash_write_dummy(); //write test data to sector 6 for debugging
+
+  flash_erase_app_sector(); //erase the backup sector
+
+  flash_write_copy(); //write a copy from backup sector to app sector
+
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
-  HAL_Delay(100); //DELAY
+  HAL_Delay(2500); //DELAY
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
 
-  uint32_t page_error = flash_write();
-
-  jump_to_app();
+  jump_to_app(); //jumpt ot application sector
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,25 +130,60 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
+    //if something goes wrong
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
+    HAL_Delay(500); //DELAY
+    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
+    HAL_Delay(500); //DELAY
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
 
-static uint32_t flash_write(void){
 
-  uint32_t FlashMemAddress = 0x08060000;
+static void flash_write_copy(void)
+{
+  volatile uint32_t appstart_flash_memory_address = 0x08008000; //start adress fpr programm sector of flash
+  volatile uint32_t * backup_flash_memory_address = 0x08040000; //start adress fpr programm sector of flash (1-)
+  uint32_t current_read_word = 0; //current read word from backup sector
+  uint32_t counter = 0;
+
+  HAL_FLASH_Unlock(); //unlock the flash
+  for(int i = 0; i < 32768; i++) //32768 = 128k/4 (4 bytes pro wort)
+  {
+    current_read_word = *(backup_flash_memory_address+counter);
+    HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,(appstart_flash_memory_address+counter),current_read_word); //Write Word at address
+    counter += 4;
+  }
+  HAL_FLASH_Lock(); //lock the flash
+
+}
+
+static uint32_t flash_erase_app_sector(void){
+
+  uint32_t sector_error = 0;
+  uint8_t status = 0;
+
+  FlashErase.Sector = FLASH_SECTOR_2; //specifiy exact sector to earase
+  FlashErase.NbSectors = 4; // specifiy number of following sectors to be erased
+  FlashErase.TypeErase = FLASH_TYPEERASE_SECTORS; //specify operation type
+  FlashErase.VoltageRange = VOLTAGE_RANGE_3; //specify parallelism of erase
+
+  HAL_FLASH_Unlock();
+  status = (uint8_t) HAL_FLASHEx_Erase(&FlashErase, &sector_error);
+  HAL_FLASH_Lock(); //lock the flash
+
+  return sector_error;
+}
+
+
+static uint32_t flash_write_dummy(void){
+
+  volatile uint32_t FlashMemAddress = 0x08040000;
   uint32_t SectorError = 0;
   uint32_t test_word = 0xDEADBEEF;
 
   HAL_FLASH_Unlock(); //unlock the flash
-  FlashErase.Sector = FLASH_SECTOR_7;
-  FlashErase.NbSectors = 1;
-  FlashErase.TypeErase = FLASH_TYPEERASE_SECTORS;
-  FlashErase.VoltageRange = VOLTAGE_RANGE_3;
-
-  HAL_FLASHEx_Erase(&FlashErase, &SectorError);
-
   //Start writing from the 1st address
   for(int i = 0; i < 32768; i++) //32768 = 128k/4 (4 bytes pro wort)
   {
@@ -153,11 +195,12 @@ static uint32_t flash_write(void){
   return SectorError;
 }
 
+
 static void jump_to_app(void){
   typedef void (*void_fn)(void);
-  uint32_t* reset_vector_entry = (uint32_t *)(0x8008000U+4U); //get adress of reset handler of main app and store it as function pointer 
-  uint32_t* reset_vector = (uint32_t*)(*reset_vector_entry);
-  void_fn jump_fn = (void_fn)reset_vector;
+  uint32_t* reset_vector_entry = (uint32_t *)(0x8008000U+4U); //get adress of reset handler of main app and store it as pointer
+  uint32_t* reset_vector = (uint32_t*)(*reset_vector_entry);  //get content of pouinter (should be antoher pointer)
+  void_fn jump_fn = (void_fn)reset_vector;                    //convert pointer to function pointer
 
   jump_fn(); //call stored function pointer as function
 }
