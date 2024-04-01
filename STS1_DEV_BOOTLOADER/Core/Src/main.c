@@ -143,14 +143,14 @@ int main(void)
 static void flash_write_copy(void)
 {
   volatile uint32_t app_flash_memory_address = 0x08020000; //start adress fpr programm sector of flash
-  volatile uint32_t * backup_flash_memory_address = 0x08040000; //start adress fpr backup programm sector of flash
+  volatile uint32_t backup_flash_memory_address = 0x08040000; //start adress fpr backup programm sector of flash
   uint32_t current_read_word = 0xCAFEBABE; //current read word from backup sector
   uint32_t counter = 0;
 
   HAL_FLASH_Unlock(); //unlock the flash
   for(uint32_t iterator = 0; iterator < 0x8000; iterator++) //4 bytes pro wort werden gelesen 0x4000 = 0x10000 im flash (128K/4=32K=0x8000)
   {
-    //current_read_word = *(backup_flash_memory_address);
+    current_read_word = *((volatile uint32_t*)backup_flash_memory_address);
     HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,app_flash_memory_address,current_read_word); //Write Word at address
     app_flash_memory_address += 4;
     backup_flash_memory_address += 4;
