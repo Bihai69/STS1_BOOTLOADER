@@ -62,19 +62,19 @@ int main(void)
   HAL_Delay(2500); //DELAY
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
 
+  flash_write_dummy(); //write test data to sector 6 for debugging
+  
   HAL_TIM_Base_Start(&htim3);
 
-  flash_write_dummy(); //write test data to sector 6 for debugging
   flash_erase_app_sector(); //erase the backup sector
   flash_write_copy(); //write a copy from backup sector to app sector
   
   uint16_t timer_value = __HAL_TIM_GET_COUNTER(&htim3); //get counter value in us
   
-  flash_erase_app_sector(); //necessary to write time basis to somewere with always empty space
   HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
   
   HAL_FLASH_Unlock();
-  HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD,0x8020000,timer_value); //Write Word at address
+  HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD,0x8010000,timer_value); //Write Word at address
   HAL_FLASH_Lock();
   HAL_TIM_Base_Stop(&htim3); //stop timer
 
@@ -232,9 +232,9 @@ static void MX_TIM3_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig = {0};
 
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 99;
+  htim3.Init.Prescaler = (50000-1);
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 65535;
+  htim3.Init.Period = (0xFFFF-1);
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
