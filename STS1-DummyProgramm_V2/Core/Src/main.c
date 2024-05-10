@@ -51,9 +51,9 @@ int main(void)
   while (1)
   {
    
-       HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
+       HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET); //LED ON
        HAL_Delay(50); //DELAY
-       HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
+       HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET); //LED OFF
        HAL_Delay(50);
    
   }

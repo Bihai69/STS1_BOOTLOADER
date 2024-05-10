@@ -12,8 +12,8 @@ st-flash write firmware.bin 0x8000000
 #st-flash write STS1_DEV_APP/build/STS1_DEV_APP.bin 0x8008000
 #st-flash write STS1_DEV_BOOTLOADER/build/STS1_DEV_BOOTLOADER.bin 0x8000000
 
-sleep 10
-st-flash reset
+#sleep 10
+#st-flash reset
 
-sleep 10 
-st-flash read read-firmware.bin 0x08000000 512K 
+#sleep 10 
+#st-flash read read-firmware.bin 0x08000000 512K 

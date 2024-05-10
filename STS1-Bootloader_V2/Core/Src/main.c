@@ -1,7 +1,8 @@
+/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file           : main.c
-  * @brief          : Main programm body for sts1 bootloader 
+  * @brief          : Main program body
   ******************************************************************************
   * @attention
   *
@@ -14,53 +15,94 @@
   *
   ******************************************************************************
   */
-
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-/* Defines -------------------------------------------------------------------*/
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
 #define MAJOR 2
 #define MINOR 0
+/* USER CODE END PD */
 
-const uint8_t BL_VERSION[2]={MAJOR,MINOR};
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-SPI_HandleTypeDef hspi3;
 TIM_HandleTypeDef htim3;
+
+UART_HandleTypeDef huart2;
+
+/* USER CODE BEGIN PV */
 FLASH_EraseInitTypeDef FlashErase;
+/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);  //system generated for clock_config
-static void MX_GPIO_Init(void); //system generated for GPIO config
-static void MX_SPI3_Init(void); //system generated for SPI config
-static void MX_TIM3_Init(void); //system generated for timer3 config
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_TIM3_Init(void);
+static void MX_USART2_UART_Init(void);
+/* USER CODE BEGIN PFP */
 
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+const uint8_t BL_VERSION[2]={MAJOR,MINOR};
 static void jump_to_app(void); //jump to main app
 static void flash_write_copy(void); //copy data from backup pool to live pool
 static void flash_write_dummy(void); //testing
 static uint32_t flash_erase_app_sector(void); //standard backup sector is 6
+/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
-{ 
+{
+
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
   /* Configure the system clock */
   SystemClock_Config();
 
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI3_Init();
   MX_TIM3_Init();
-
-  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
+  MX_USART2_UART_Init();
+  /* USER CODE BEGIN 2 */
+  /*
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET); //LED ON
   HAL_Delay(2500); //DELAY
-  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
+  HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET); //LED ON
 
   flash_write_dummy(); //write test data to sector 6 for debugging
   
@@ -78,87 +120,31 @@ int main(void)
   HAL_FLASH_Lock();
   HAL_TIM_Base_Stop(&htim3); //stop timer
 
-  //jump_to_app(); //jumpt ot application sector
+  //jump_to_app(); //jumpt ot application sector*/
+  uint8_t tx_buff[] = "hello world";
+  /* USER CODE END 2 */
 
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
   while (1)
   {
-   
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
     //if something goes wrong
     HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET); //LED ON
     HAL_Delay(500); //DELAY
     HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
     HAL_Delay(500); //DELAY
-   
+    HAL_UART_Transmit(&huart2, tx_buff, sizeof(tx_buff), 1000);
   }
+  /* USER CODE END 3 */
 }
 
-/*------------User written functions---------------*/
-static void flash_write_copy(void)
-{
-  volatile uint32_t app_flash_memory_address = 0x08020000; //start adress fpr programm sector of flash
-  volatile uint32_t backup_flash_memory_address = 0x08040000; //start adress fpr backup programm sector of flash
-  uint32_t current_read_word = 0xCAFEBABE; //current read word from backup sector
-
-
-  HAL_FLASH_Unlock(); //unlock the flash
-  for(uint32_t iterator = 0; iterator < 0x8000; iterator++) //4 bytes pro wort werden gelesen 0x4000 = 0x10000 im flash (128K/4=32K=0x8000)
-  {
-    current_read_word = *((volatile uint32_t*)backup_flash_memory_address);
-    HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,app_flash_memory_address,current_read_word); //Write Word at address
-    app_flash_memory_address += 4;
-    backup_flash_memory_address += 4;
-  }
-
-  HAL_FLASH_Lock(); //lock the flash
-
-}
-
-static uint32_t flash_erase_app_sector(void){
-
-  uint32_t sector_error = 0;
-
-  FlashErase.Sector = FLASH_SECTOR_5; //specifiy exact sector to earase
-  FlashErase.NbSectors = 1; // specifiy number of following+initial sectors to be erased
-  FlashErase.TypeErase = FLASH_TYPEERASE_SECTORS; //specify operation type
-  FlashErase.VoltageRange = VOLTAGE_RANGE_3; //specify parallelism of erase
-
-  HAL_FLASH_Unlock();
-  //status = (uint8_t) HAL_FLASHEx_Erase(&FlashErase, &sector_error);
-  HAL_FLASHEx_Erase(&FlashErase, &sector_error);
-  HAL_FLASH_Lock(); //lock the flash
-
-  return sector_error;
-}
-
-
-static void flash_write_dummy(void){
-
-  volatile uint32_t FlashMemAddress = 0x08040000;
-  uint32_t test_word = 0xDEADBEEF;
-
-  HAL_FLASH_Unlock(); //unlock the flash
-  //Start writing from the 1st address
-  for(int iterator = 0; iterator < 0x8000; iterator++) //32768 = 128k/4 (4 bytes pro wort)
-  {
-      HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,FlashMemAddress, test_word);
-      FlashMemAddress += 4; // word (4 bytes) increment
-  }
-
-  HAL_FLASH_Lock(); //lock the flash
-}
-
-
-static void jump_to_app(void){
-  typedef void (*void_fn)(void);
-  uint32_t* reset_vector_entry = (uint32_t *)(0x8020000U+4U); //get adress of reset handler of main app and store it as pointer
-  uint32_t* reset_vector = (uint32_t*)(*reset_vector_entry);  //get content of pouinter (should be antoher pointer)
-  void_fn jump_fn = (void_fn)reset_vector;                    //convert pointer to function pointer
-
-  jump_fn(); //call stored function pointer as function
-}
-
-/*------------MxCube written functions---------------*/
-
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -201,40 +187,28 @@ void SystemClock_Config(void)
   }
 }
 
-static void MX_SPI3_Init(void)
-{
-
-  /* SPI3 parameter configuration*/
-  hspi3.Instance = SPI3;
-  hspi3.Init.Mode = SPI_MODE_MASTER;
-  hspi3.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi3.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi3.Init.NSS = SPI_NSS_SOFT;
-  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi3.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  
-}
-
-
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_TIM3_Init(void)
 {
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
 
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
 
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = (50000-1);
+  htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = (0xFFFF-1);
+  htim3.Init.Period = 65535;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -252,23 +226,67 @@ static void MX_TIM3_Init(void)
   {
     Error_Handler();
   }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
 
 }
 
+/**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
@@ -277,22 +295,90 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
+}
+
+/* USER CODE BEGIN 4 */
+/*
+static void flash_write_copy(void)
+{
+  volatile uint32_t app_flash_memory_address = 0x08020000; //start adress fpr programm sector of flash
+  volatile uint32_t backup_flash_memory_address = 0x08040000; //start adress fpr backup programm sector of flash
+  uint32_t current_read_word = 0xCAFEBABE; //current read word from backup sector
+
+
+  HAL_FLASH_Unlock(); //unlock the flash
+  for(uint32_t iterator = 0; iterator < 0x8000; iterator++) //4 bytes pro wort werden gelesen 0x4000 = 0x10000 im flash (128K/4=32K=0x8000)
+  {
+    current_read_word = *((volatile uint32_t*)backup_flash_memory_address);
+    HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,app_flash_memory_address,current_read_word); //Write Word at address
+    app_flash_memory_address += 4;
+    backup_flash_memory_address += 4;
+  }
+
+  HAL_FLASH_Lock(); //lock the flash
 
 }
 
+static uint32_t flash_erase_app_sector(void){
+
+  uint32_t sector_error = 0;
+
+  FlashErase.Sector = FLASH_SECTOR_5; //specifiy exact sector to earase
+  FlashErase.NbSectors = 1; // specifiy number of following+initial sectors to be erased
+  FlashErase.TypeErase = FLASH_TYPEERASE_SECTORS; //specify operation type
+  FlashErase.VoltageRange = VOLTAGE_RANGE_3; //specify parallelism of erase
+
+  HAL_FLASH_Unlock();
+  //status = (uint8_t) HAL_FLASHEx_Erase(&FlashErase, &sector_error);
+  HAL_FLASHEx_Erase(&FlashErase, &sector_error);
+  HAL_FLASH_Lock(); //lock the flash
+
+  return sector_error;
+}
+
+static void flash_write_dummy(void){
+
+  volatile uint32_t FlashMemAddress = 0x08040000;
+  uint32_t test_word = 0xDEADBEEF;
+
+  HAL_FLASH_Unlock(); //unlock the flash
+  //Start writing from the 1st address
+  for(int iterator = 0; iterator < 0x8000; iterator++) //32768 = 128k/4 (4 bytes pro wort)
+  {
+      HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD,FlashMemAddress, test_word);
+      FlashMemAddress += 4; // word (4 bytes) increment
+  }
+
+  HAL_FLASH_Lock(); //lock the flash
+}
+
+static void jump_to_app(void){
+  typedef void (*void_fn)(void);
+  uint32_t* reset_vector_entry = (uint32_t *)(0x8020000U+4U); //get adress of reset handler of main app and store it as pointer
+  uint32_t* reset_vector = (uint32_t*)(*reset_vector_entry);  //get content of pouinter (should be antoher pointer)
+  void_fn jump_fn = (void_fn)reset_vector;                    //convert pointer to function pointer
+
+  jump_fn(); //call stored function pointer as function
+}
+
+*/
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
 void Error_Handler(void)
 {
+  /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)
   {
   }
+  /* USER CODE END Error_Handler_Debug */
 }
 
 #ifdef  USE_FULL_ASSERT
@@ -303,11 +389,11 @@ void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-
 void assert_failed(uint8_t *file, uint32_t line)
 {
-  // User can add his own implementation to report the file name and line number,
-  // ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) 
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
 }
-
-#endif 
+#endif /* USE_FULL_ASSERT */
