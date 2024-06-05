@@ -54,7 +54,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_USART2_UART_Init(void);
-uint32_t crc32_1byte(const void*,size_t,uint32_t);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -66,6 +65,8 @@ static void jump_to_app(void); //jump to main app
 static void flash_write_copy(void); //copy data from backup pool to live pool
 static void flash_write_dummy(void); //testing
 static uint32_t flash_erase_app_sector(void); //standard backup sector is 6
+uint32_t CrcSectorSw(uint32_t, uint32_t);
+uint32_t ComputeCrc32Sw(uint8_t*, size_t, uint32_t);
 
 volatile const uint32_t Crc32Lookup[256]={
      0x00000000, 0x04c11db7, 0x09823b6e, 0x0d4326d9, 0x130476dc, 0x17c56b6b, 0x1a864db2,
@@ -405,14 +406,26 @@ static void jump_to_app(void){
   jump_fn(); //call stored function pointer as function
 }
 */
-uint32_t crc32_1byte(const void* data, size_t length, uint32_t previousCrc32) {   
-  uint32_t crc = ~previousCrc32;   
-  unsigned char* current = (unsigned char*) data;
+uint32_t ComputeCrc32Sw(uint8_t* data, size_t length, uint32_t previousCrc32)
+{
+  uint32_t crc32 = previousCrc32;  // NOLINT(misc-const-correctness)
+  for(int i = 0; i < length; i++)
+  {
+      int lookupIndex =
+          // NOLINTNEXTLINE(magic-numbers)
+          ((crc32 >> 24U) ^ data[i]) & 0xFFU;
+      crc32 = (crc32 << 8) ^ crcTable[lookupIndex];
+  }
+  return crc32;
+}
 
-  while (length--)     
-    crc = (crc >> 8) ^ Crc32Lookup[(crc & 0xFF) ^ *current++];   
-  return ~crc; 
-} 
+uint32_t CrcSectorSw(uint32_t size, uint32_t initialCrc32Value)
+{
+  uint8_t sector[SECTOR6_START_ADDRESS-SECTOR5_START_ADDRESS];
+  sector = SECTOR5_START_ADDRESS;
+
+  return ComputeCrc32Sw(sector, sizeof(sector), initialCrc32Value);
+}
 
 /* USER CODE END 4 */
 
