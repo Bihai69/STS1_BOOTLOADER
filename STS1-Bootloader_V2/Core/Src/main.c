@@ -56,7 +56,17 @@ static void MX_GPIO_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
 
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  return ch;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -68,6 +78,7 @@ static void flash_write_dummy(void); //testing
 static uint32_t flash_erase_app_sector(void); //standard backup sector is 6
 uint32_t CrcSectorSw(uint32_t, uint32_t);
 uint32_t ComputeCrc32Sw(uint8_t*, size_t, uint32_t);
+uint32_t BackupCrc(void);
 
 volatile const uint32_t crcTable[256]={
      0x00000000, 0x04c11db7, 0x09823b6e, 0x0d4326d9, 0x130476dc, 0x17c56b6b, 0x1a864db2,
@@ -166,11 +177,9 @@ int main(void)
 
   //jump_to_app(); //jumpt ot application sector*/
 
-  uint32_t returned_crc = ComputeCrc32Sw((uint8_t*)SECTOR5_START_ADDRESS,128,initialCrc32Value);
+  uint32_t crc = (BackupCrc());
 
-  uint8_t tx_buff[8];
-
-  sprintf(tx_buff,"%d", (int)returned_crc);
+  printf("CRC: %X\n", crc);
   /* USER CODE END 2 */
   //sprintf(tx_buff, "%d",returned_crc);
   /* Infinite loop */
@@ -185,7 +194,6 @@ int main(void)
     HAL_Delay(500); //DELAY
     HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET); //LED OFF
     HAL_Delay(500); //DELAY
-    HAL_UART_Transmit(&huart2, tx_buff, sizeof(tx_buff), 1000);
   }
   /* USER CODE END 3 */
 }
@@ -423,6 +431,14 @@ uint32_t ComputeCrc32Sw(uint8_t* data, size_t length, uint32_t previousCrc32)
       crc32 = (crc32 << 8) ^ crcTable[lookupIndex];
   }
   return crc32;
+}
+
+uint32_t BackupCrc(void)
+{
+  uint32_t length = (*(((uint32_t*)SECTOR6_START_ADDRESS)));// read length-word word end change endianness
+  uint32_t crc = ComputeCrc32Sw((uint8_t*)SECTOR6_START_ADDRESS,length,0xFFFFFFFF); //A19FA843 43A89FA1
+
+  return(crc);
 }
 /* USER CODE END 4 */
 
